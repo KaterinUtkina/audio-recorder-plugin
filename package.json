@@ -1,0 +1,9 @@
+{
+  "name": "audio-recorder-plugin",
+  "version": "1.0.0",
+  "description": "A plugin for recording audio using MediaRecorder with polyfill.",
+  "main": "index.js",
+  "dependencies": {
+    "audio-recorder-polyfill": "^0.4.1"
+  }
+}
