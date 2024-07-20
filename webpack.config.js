@@ -1,7 +1,10 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('css-minimizer-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+
+ENTRY_PATH = path.resolve(__dirname, "src/index")
+DIST_PATH = path.resolve(__dirname, "dist")
 
 module.exports = {
     mode: 'production',
@@ -9,41 +12,28 @@ module.exports = {
         minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin({})],
     },
     entry: {
-        main: './src/audioRecorder.ts'
+        main: ENTRY_PATH,
     },
     output: {
-        filename: 'audio-recorder.min.js',
-        path: path.resolve(__dirname, 'dist')
+        path: DIST_PATH,
+        filename: 'audio-recorder-plugin.min.js',
+        clean: true,
     },
     resolve: {
-        extensions: ['.ts', '.js'],
+        extensions: ['.tsx', '.ts', '.js'],
     },
     module: {
         rules: [
             {
-                test: /\.ts$/,
+                test: /\.tsx?$/,
+                use: 'ts-loader',
                 exclude: /node_modules/,
-                use: [
-                    {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: [
-                                '@babel/preset-env',
-                                '@babel/preset-typescript',
-                            ],
-                        },
-                    },
-                    'ts-loader',
-                ],
             },
             {
-                test: /\.css$/i,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader',
-                ],
+                test: /\.s[ac]ss$/,
+                use: ["style-loader", "css-loader", "sass-loader"],
             },
-        ]
+        ],
     },
     plugins: [
         new MiniCssExtractPlugin({

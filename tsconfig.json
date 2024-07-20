@@ -1,18 +1,19 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "es6",
     "strict": true,
     "esModuleInterop": true,
+    "target": "es5",
+    "sourceMap": true,
+    "declaration": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "removeComments": false,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist",
     "rootDir": "./src",
-    "declaration": true,
-    "declarationDir": "./types",
-    "sourceMap": true,
-    "moduleResolution": "node"
+    "declarationDir": "./types"
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist"]
 }

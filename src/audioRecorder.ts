@@ -16,8 +16,7 @@ export class AudioRecorderPlugin {
         navigator.mediaDevices.getUserMedia({ audio: true })
             .then((stream: MediaStream) => {
                 this.mediaRecorder = new window.MediaRecorder(stream);
-
-                if (this.mediaRecorder === null) {
+                if (!this.mediaRecorder) {
                     return console.error('Media recorder is null');
                 }
 
@@ -33,9 +32,9 @@ export class AudioRecorderPlugin {
                     const audio = new Audio(audioUrl);
                     audio.controls = true;
 
-                    this.recordedChunks = [];
+                    document.body.appendChild(audio);
 
-                    return audio;
+                    this.recordedChunks = [];
                 });
 
                 this.mediaRecorder.addEventListener('error', (event: Event) => {
