@@ -1,9 +1,8 @@
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-ENTRY_PATH = path.resolve(__dirname, "src/index")
 DIST_PATH = path.resolve(__dirname, "dist")
 
 module.exports = {
@@ -12,11 +11,12 @@ module.exports = {
         minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin({})],
     },
     entry: {
-        main: ENTRY_PATH,
+        "audio-recorder-plugin": './src/audioRecorder.ts',
+        demo: './src/demo.ts'
     },
     output: {
         path: DIST_PATH,
-        filename: 'audio-recorder-plugin.min.js',
+        filename: '[name].min.js',
         clean: true,
     },
     resolve: {
@@ -36,8 +36,13 @@ module.exports = {
         ],
     },
     plugins: [
-        new MiniCssExtractPlugin({
-            filename: 'audio-recorder.min.css',
+        new OptimizeCSSAssetsPlugin({
+            filename: 'demo.min.css',
         }),
-    ]
+        new HtmlWebpackPlugin({
+            template: './src/demo.html',
+            inject: 'body',
+            chunks: ['main', 'demo']
+        })
+    ],
 };
