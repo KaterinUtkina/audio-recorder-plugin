@@ -9,57 +9,66 @@ export class AudioRecorderPlugin {
     constructor() {
         this.mediaRecorder = null;
         this.recordedChunks = [];
-        this.init();
     }
 
-    private init(): void {
-        navigator.mediaDevices.getUserMedia({ audio: true })
-            .then((stream: MediaStream) => {
-                this.mediaRecorder = new window.MediaRecorder(stream);
-                if (!this.mediaRecorder) {
-                    return console.error('Media recorder is null');
+    public async init(): Promise<void> {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            this.mediaRecorder = new window.MediaRecorder(stream);
+
+            if (!this.mediaRecorder) {
+                return Promise.reject('MediaRecorder error: is null');
+            }
+
+            this.mediaRecorder.addEventListener('dataavailable', (event: BlobEvent) => {
+                if (event.data.size > 0) {
+                    this.recordedChunks.push(event.data);
                 }
+            });
 
-                this.mediaRecorder.addEventListener('dataavailable', (event: BlobEvent) => {
-                    if (event.data.size > 0) {
-                        this.recordedChunks.push(event.data);
-                    }
-                });
+            this.mediaRecorder.addEventListener('error', () => {
+                return Promise.reject('MediaRecorder error');
+            });
 
-                this.mediaRecorder.addEventListener('stop', () => {
+            return Promise.resolve();
+
+        } catch (error) {
+            return Promise.reject(error);
+        }
+    }
+
+    public startRecording(): Promise<void> {
+        return new Promise((resolve, reject) => {
+            if (!this.mediaRecorder) {
+                return reject('MediaRecorder error: not initialized.');
+            }
+
+            this.mediaRecorder.start();
+        })
+    }
+
+    public stopRecording(): Promise<HTMLAudioElement> {
+        return new Promise((resolve, reject) => {
+            if (!this.mediaRecorder) {
+                return reject('MediaRecorder error: not initialized.');
+            }
+
+            this.mediaRecorder.addEventListener('stop', () => {
+                try {
                     const audioBlob = new Blob(this.recordedChunks, { type: 'audio/wav' });
                     const audioUrl = URL.createObjectURL(audioBlob);
                     const audio = new Audio(audioUrl);
                     audio.controls = true;
 
-                    document.body.appendChild(audio);
-
                     this.recordedChunks = [];
-                });
 
-                this.mediaRecorder.addEventListener('error', (event: Event) => {
-                    console.error('MediaRecorder error:', event);
-                });
-
-            })
-            .catch((error: Error) => {
-                console.error('The following getUserMedia error occurred: ' + error);
+                    resolve(audio);
+                } catch (error) {
+                    reject(error);
+                }
             });
-    }
 
-    public startRecording(): void {
-        if (this.mediaRecorder) {
-            this.mediaRecorder.start();
-        } else {
-            console.error('MediaRecorder is not initialized.');
-        }
-    }
-
-    public stopRecording(): void {
-        if (this.mediaRecorder) {
-            return this.mediaRecorder.stop();
-        } else {
-            console.error('MediaRecorder is not initialized.');
-        }
+            this.mediaRecorder.stop();
+        })
     }
 }

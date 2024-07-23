@@ -2,7 +2,7 @@ export declare class AudioRecorderPlugin {
     private mediaRecorder;
     private recordedChunks;
     constructor();
-    private init;
-    startRecording(): void;
-    stopRecording(): void;
+    init(): Promise<void>;
+    startRecording(): Promise<void>;
+    stopRecording(): Promise<HTMLAudioElement>;
 }
