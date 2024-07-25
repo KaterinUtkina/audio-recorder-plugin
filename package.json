@@ -14,11 +14,16 @@
   "files": [
     "dist"
   ],
+  "keywords": [
+    "audio",
+    "recorder"
+  ],
   "scripts": {
     "build:cjs": "tsc -p tsconfig.cjs.json",
-    "build:esm": "tsc -p tsconfig.esm.json && npm run rename:esm",
+    "build:esm": "tsc -p tsconfig.esm.json && npm run rename",
     "build": "npm run build:cjs && npm run build:esm",
-    "prepack": "npm run rimraf dist && npm run build",
+    "rename": "node fix-mjs.js",
+    "prepack": "npm run build && npm run rename",
     "dev": "webpack serve --open --mode=development",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production"
