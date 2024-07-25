@@ -1,6 +1,6 @@
 import AudioRecorder from 'audio-recorder-polyfill';
 
-// Set the MediaRecorder polyfill if it's not available in the current environment
+// Set the MediaRecorder polyfill
 window.MediaRecorder = AudioRecorder;
 
 /**

@@ -1,4 +1,4 @@
-import {AudioRecorderPlugin} from "./audioRecorder";
+import {AudioRecorderPlugin} from "../lib/audioRecorder";
 
 document.addEventListener('DOMContentLoaded', () => {
     const recorder = new AudioRecorderPlugin();

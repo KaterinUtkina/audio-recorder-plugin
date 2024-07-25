@@ -3,17 +3,13 @@
     "strict": true,
     "esModuleInterop": true,
     "target": "es5",
-    "sourceMap": true,
-    "declaration": true,
     "module": "ESNext",
     "moduleResolution": "node",
     "removeComments": false,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "declarationDir": "./types"
+    "outDir": "./build",
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src/**/*.ts", "lib/**/*.ts"],
+  "exclude": ["node_modules", "build", "dist"]
 }

@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "es2015"],
+    "module": "ESNext",
+    "target": "es5",
+    "declaration": true,
+    "declarationDir": "./dist/types",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "removeComments": false,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "rootDir": "./lib"
+  },
+  "include": ["lib/**/*.ts"],
+  "exclude": ["node_modules", "dist", "src"]
+}
