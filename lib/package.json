@@ -1,6 +1,6 @@
 {
   "name": "audio-recorder-plugin",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "A plugin for recording audio using MediaRecorder with polyfill.",
   "main": "./dist/cjs/audioRecorder.js",
   "module": "./dist/esm/audioRecorder.mjs",
@@ -20,7 +20,27 @@
   ],
   "keywords": [
     "audio",
-    "recorder"
+    "recorder",
+    "media-recorder",
+    "recording",
+    "audio-recorder",
+    "browser-audio",
+    "audio-capture",
+    "media-capture",
+    "web-audio",
+    "audio-polyfill",
+    "audio-plugin",
+    "javascript",
+    "typescript",
+    "web-audio-recorder",
+    "audio-recording-plugin",
+    "media-recorder-polyfill",
+    "record-audio",
+    "audio-tool",
+    "frontend-audio",
+    "record-audio-plugin",
+    "browser-plugin",
+    "audio-record"
   ],
   "repository": {
     "type": "git",
