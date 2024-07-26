@@ -8,7 +8,7 @@
     "build:esm": "tsc -p tsconfig.esm.json && npm run rename",
     "build": "npm run build:cjs && npm run build:esm",
     "rename": "node fix-mjs.js",
-    "copy:readme": "cpx README.md lib/dist/",
+    "copy:readme": "cp README.md lib/",
     "prepack": "npm run clean lib/dist && npm run build && npm run rename && npm run copy:readme",
     "dev": "webpack serve --open --mode=development",
     "build:dev": "webpack --mode=development",
