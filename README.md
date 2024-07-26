@@ -37,6 +37,25 @@ Here's how you can use the AudioRecorderPlugin in your JavaScript project:
 ```
 import { AudioRecorderPlugin } from 'audio-recorder-plugin';
 const recorder = new AudioRecorderPlugin();
+
+const start = async () => {
+    try {
+        await recorder.init();
+        await recorder.startRecording();
+        // Your code...
+    } catch (error) {
+        console.error('Error starting the audio recorder:', error);
+    }
+}
+
+const stop = async () => {
+    try {
+        const audio = await recorder.stopRecording();
+        // Your code...
+    } catch (error) {
+        console.error('Error stopping the audio recorder:', error);
+    }
+}
 ```
 ## API
 
