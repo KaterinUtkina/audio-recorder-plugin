@@ -1,45 +1,45 @@
 const fs = require('fs');
 const path = require('path');
 
-// Папка с исходными .js файлами
-const directoryPath = path.join(__dirname, 'dist/esm');
+// Directory containing the source .js files
+const directoryPath = path.join(__dirname, 'lib/dist/esm');
 
-// Функция для замены расширений и переименования файлов
+// Function to replace extensions and rename files
 function updateFilesInDirectory(directory) {
     fs.readdir(directory, (err, files) => {
         if (err) {
-            console.error(`Не удалось прочитать папку ${directory}: ${err}`);
+            console.error(`Failed to read directory ${directory}: ${err}`);
             return;
         }
 
         files.forEach(file => {
             const filePath = path.join(directory, file);
 
-            // Проверяем, что это файл с расширением .js
+            // Check if the file has a .js extension
             if (path.extname(file) === '.js') {
                 fs.readFile(filePath, 'utf8', (err, data) => {
                     if (err) {
-                        console.error(`Не удалось прочитать файл ${filePath}: ${err}`);
+                        console.error(`Failed to read file ${filePath}: ${err}`);
                         return;
                     }
 
-                    // Заменяем все .js на .mjs в содержимом файла
+                    // Replace all .js with .mjs in the file content
                     const updatedData = data.replace(/\.js/g, '.mjs');
                     const newFilePath = path.join(directory, path.basename(file, '.js') + '.mjs');
 
-                    // Записываем обновленное содержимое в новый файл
+                    // Write the updated content to the new file
                     fs.writeFile(newFilePath, updatedData, 'utf8', (err) => {
                         if (err) {
-                            console.error(`Не удалось записать файл ${newFilePath}: ${err}`);
+                            console.error(`Failed to write file ${newFilePath}: ${err}`);
                             return;
                         }
 
-                        // Удаляем старый файл .js
+                        // Delete the old .js file
                         fs.unlink(filePath, (err) => {
                             if (err) {
-                                console.error(`Не удалось удалить файл ${filePath}: ${err}`);
+                                console.error(`Failed to delete file ${filePath}: ${err}`);
                             } else {
-                                console.log(`Файл ${filePath} был успешно заменен на ${newFilePath}`);
+                                console.log(`File ${filePath} was successfully replaced with ${newFilePath}`);
                             }
                         });
                     });
@@ -49,5 +49,5 @@ function updateFilesInDirectory(directory) {
     });
 }
 
-// Запускаем скрипт
+// Run the script
 updateFilesInDirectory(directoryPath);

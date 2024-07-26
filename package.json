@@ -1,29 +1,15 @@
 {
-  "name": "audio-recorder-plugin",
-  "version": "1.0.0",
-  "description": "A plugin for recording audio using MediaRecorder with polyfill.",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.mjs",
-  "types": "./dist/types/index.d.ts",
-  "exports": {
-    ".": {
-      "require": "./dist/cjs/index.js",
-      "import": "./dist/esm/index.mjs"
-    }
-  },
-  "files": [
-    "dist"
-  ],
-  "keywords": [
-    "audio",
-    "recorder"
+  "workspaces": [
+    "lib/*"
   ],
   "scripts": {
+    "clean": "rm -rf dist",
     "build:cjs": "tsc -p tsconfig.cjs.json",
     "build:esm": "tsc -p tsconfig.esm.json && npm run rename",
     "build": "npm run build:cjs && npm run build:esm",
     "rename": "node fix-mjs.js",
-    "prepack": "npm run build && npm run rename",
+    "copy:readme": "cpx README.md lib/dist/",
+    "prepack": "npm run clean lib/dist && npm run build && npm run rename && npm run copy:readme",
     "dev": "webpack serve --open --mode=development",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production"

@@ -1,0 +1,32 @@
+{
+  "name": "audio-recorder-plugin",
+  "version": "1.0.3",
+  "description": "A plugin for recording audio using MediaRecorder with polyfill.",
+  "main": "./dist/cjs/audioRecorder.js",
+  "module": "./dist/esm/audioRecorder.mjs",
+  "types": "./types/audioRecorder.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types/audioRecorder.d.ts",
+      "require": "./dist/cjs/audioRecorder.js",
+      "import": "./dist/esm/audioRecorder.mjs",
+      "default": "./dist/esm/audioRecorder.mjs"
+    }
+  },
+  "author": "Ekaterina Utkina",
+  "files": [
+    "dist",
+    "types"
+  ],
+  "keywords": [
+    "audio",
+    "recorder"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KaterinUtkina/audio-recorder-plugin"
+  },
+  "dependencies": {
+    "audio-recorder-polyfill": "^0.4.1"
+  }
+}
