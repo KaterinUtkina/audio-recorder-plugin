@@ -2,12 +2,21 @@ import {AudioRecorderPlugin} from "../lib";
 
 document.addEventListener('DOMContentLoaded', () => {
     const recorder = new AudioRecorderPlugin();
+    const selectors = {
+        startButton: ".js-button-start",
+        stopButton: ".js-button-stop",
+        container: ".js-container",
+    }
+    const startButton = document.querySelector(selectors.startButton);
+    const stopButton = document.querySelector(selectors.stopButton);
+    const container = document.querySelector(selectors.container);
+    const SHOW_CLASS = 'show';
 
-    document.getElementById('start')?.addEventListener('click', () => {
+    startButton?.addEventListener('click', () => {
         startAudioRecording();
     });
 
-    document.getElementById('stop')?.addEventListener('click', () => {
+    stopButton?.addEventListener('click', () => {
         stopAudioRecording();
     });
 
@@ -15,6 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             await recorder.init();
             await recorder.startRecording();
+
+            toggleShowClass();
         } catch (error) {
             console.error('Error starting the audio recorder:', error);
         }
@@ -23,9 +34,21 @@ document.addEventListener('DOMContentLoaded', () => {
     async function stopAudioRecording() {
         try {
             const audio = await recorder.stopRecording();
-            document.body.appendChild(audio);
+
+            toggleShowClass();
+
+            setAudio(audio);
         } catch (error) {
             console.error('Error stopping the audio recorder:', error);
         }
+    }
+
+    const toggleShowClass = () => {
+        startButton?.classList.toggle(SHOW_CLASS);
+        stopButton?.classList.toggle(SHOW_CLASS);
+    }
+
+    const setAudio = (audio: HTMLAudioElement) => {
+        container?.appendChild(audio);
     }
 });

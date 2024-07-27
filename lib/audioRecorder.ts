@@ -71,6 +71,8 @@ export class AudioRecorderPlugin {
 
             // Start recording
             this.mediaRecorder.start();
+
+            resolve();
         });
     }
 

@@ -9,12 +9,9 @@ DIST_PATH = path.resolve(__dirname, "build")
 module.exports = {
     mode: 'production',
     optimization: {
-        minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin({})],
+        minimizer: [new TerserPlugin()],
     },
-    entry: {
-        plugin: './lib/audioRecorder.ts',
-        demo: './src/demo.ts'
-    },
+    entry: './src/index.ts',
     output: {
         path: DIST_PATH,
         filename: '[name].min.js',
@@ -32,13 +29,24 @@ module.exports = {
             },
             {
                 test: /\.s[ac]ss$/,
-                use: ["style-loader", "css-loader", "sass-loader"],
+                use: [
+                    OptimizeCSSAssetsPlugin.loader,
+                    'css-loader',
+                    'sass-loader',
+                ],
             },
+            {
+                test: /\.css$/,
+                use: [
+                    OptimizeCSSAssetsPlugin.loader,
+                    'css-loader',
+                ],
+            }
         ],
     },
     plugins: [
         new OptimizeCSSAssetsPlugin({
-            filename: 'demo.min.css',
+            filename: '[name].min.css',
         }),
         new HtmlWebpackPlugin({
             template: './src/demo.html',
@@ -46,7 +54,7 @@ module.exports = {
         }),
         new CopyWebpackPlugin({
             patterns: [
-                { from: 'src/favicon.ico', to: 'favicon.ico' }
+                { from: './src/favicon.ico', to: 'favicon.ico' },
             ],
         }),
     ],

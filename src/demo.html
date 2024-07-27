@@ -6,8 +6,38 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <title>Audio Recorder Demo</title>
 </head>
-<body>
-<button id="start">Start Recording</button>
-<button id="stop">Stop Recording</button>
+<body class="audio-recorder">
+    <div class="audio-recorder__container">
+        <header>
+            <h1 class="audio-recorder__title">
+                Interactive Demo of&nbsp;Audio Recorder Plugin
+            </h1>
+        </header>
+        <section>
+            <h3 class="audio-recorder__subtitle">
+                Allow Microphone Access to&nbsp;Start Recording
+            </h3>
+            <p class="audio-recorder__description">
+                To&nbsp;begin recording audio with the Audio Recorder Plugin, please ensure that you have granted
+                microphone access in&nbsp;your browser. This is&nbsp;typically done through a&nbsp;permission prompt
+                that appears when you first attempt to&nbsp;record. Make sure that microphone access is&nbsp;enabled
+                for the plugin to&nbsp;function correctly.
+            </p>
+        </section>
+        <main class="audio-recorder__content js-container">
+            <div class="audio-recorder__button">
+                <button class="audio-recorder__button--start js-button-start show" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M14.5,11c-.828,0-1.5-.671-1.5-1.5s.672-1.5,1.5-1.5h1.5v-1c0-2.206-1.794-4-4-4s-4,1.794-4,4v1h1.5c.828,0,1.5,.671,1.5,1.5s-.672,1.5-1.5,1.5h-1.5v1c0,1.782,1.196,3.365,2.908,3.85,.797,.226,1.261,1.054,1.035,1.852-.187,.661-.788,1.092-1.442,1.092-.136,0-.272-.019-.409-.057-2.998-.848-5.092-3.618-5.092-6.736V7C5,3.14,8.141,0,12,0s7,3.14,7,7v2.5c0,.829-.672,1.5-1.5,1.5h-3Zm-4,10c-4.136,0-7.5-3.364-7.5-7.5v-.5c0-.829-.672-1.5-1.5-1.5s-1.5,.671-1.5,1.5v.5c0,5.79,4.71,10.5,10.5,10.5,.828,0,1.5-.671,1.5-1.5s-.672-1.5-1.5-1.5Zm12-9.5c-.828,0-1.5,.671-1.5,1.5v.5c0,.829,.672,1.5,1.5,1.5s1.5-.671,1.5-1.5v-.5c0-.829-.672-1.5-1.5-1.5Zm.02,5.731l-6.156-3.944c-1.003-.642-2.319,.078-2.319,1.268v7.888c0,1.191,1.316,1.911,2.319,1.268l6.156-3.944c.925-.593,.925-1.944,0-2.537Z"/>
+                    </svg>
+                </button>
+                <button class="audio-recorder__button--stop js-button-stop" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="m12,0C5.383,0,0,5.383,0,12s5.383,12,12,12,12-5.383,12-12S18.617,0,12,0Zm0,21c-4.962,0-9-4.038-9-9S7.038,3,12,3s9,4.038,9,9-4.038,9-9,9Zm4-11v4c0,1.105-.895,2-2,2h-4c-1.105,0-2-.895-2-2v-4c0-1.105.895-2,2-2h4c1.105,0,2,.895,2,2Z"/>
+                    </svg>
+                </button>
+            </div>
+        </main>
+    </div>
 </body>
 </html>
