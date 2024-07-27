@@ -1,5 +1,3 @@
-> # 🚧 Development in Progress 🚧
-
 # audio-recorder-plugin
 
 Audio Recorder Plugin is a versatile and easy-to-use plugin for recording audio in the browser using the MediaRecorder API. It includes polyfill support to ensure compatibility across different browsers, making it a reliable choice for your web audio recording needs.
@@ -21,6 +19,7 @@ Audio Recorder Plugin is a versatile and easy-to-use plugin for recording audio 
 
 ## Live Demo
 
+Check out the live demo of the Audio Recorder Plugin: [Audio Recorder Plugin Live Demo](https://katerinutkina.github.io/audio-recorder-plugin/)
 
 ## Installation
 You can install the plugin via npm or yarn:
