@@ -2,6 +2,7 @@ const path = require('path');
 const OptimizeCSSAssetsPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 DIST_PATH = path.resolve(__dirname, "build")
 
@@ -42,6 +43,11 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/demo.html',
             inject: 'body'
-        })
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: 'src/favicon.ico', to: 'favicon.ico' }
+            ],
+        }),
     ],
 };
