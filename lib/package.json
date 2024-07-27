@@ -1,6 +1,6 @@
 {
   "name": "audio-recorder-plugin",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A plugin for recording audio using MediaRecorder with polyfill.",
   "main": "./dist/cjs/audioRecorder.js",
   "module": "./dist/esm/audioRecorder.mjs",
