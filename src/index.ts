@@ -1,3 +1,3 @@
 import "./demo";
-import "./demo.scss";
+import "./index.scss";
 

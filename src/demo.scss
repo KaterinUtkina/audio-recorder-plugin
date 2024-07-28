@@ -1,8 +1,15 @@
+
+
 .audio-recorder {
     &__container {
         margin: 0 auto;
         padding: 50px;
         width: 50%;
+
+        @media (max-width: 767px) {
+            width: 100%;
+            padding: 20px;
+        }
     }
 
     &__title {
