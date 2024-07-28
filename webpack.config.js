@@ -3,6 +3,7 @@ const OptimizeCSSAssetsPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const SvgSpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 DIST_PATH = path.resolve(__dirname, "build")
 
@@ -41,6 +42,19 @@ module.exports = {
                     OptimizeCSSAssetsPlugin.loader,
                     'css-loader',
                 ],
+            },
+            {
+                test: /\.svg$/,
+                use: [
+                    {
+                        loader: 'svg-sprite-loader',
+                        options: {
+                            extract: true,
+                            spriteFilename: 'sprite.svg'
+                        }
+                    },
+                    'svgo-loader'
+                ]
             }
         ],
     },
@@ -57,5 +71,8 @@ module.exports = {
                 { from: './src/favicon.ico', to: 'favicon.ico' },
             ],
         }),
+        new SvgSpriteLoaderPlugin({
+            plainSprite: true
+        })
     ],
 };
