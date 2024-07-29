@@ -12,7 +12,7 @@ module.exports = {
     optimization: {
         minimizer: [new TerserPlugin()],
     },
-    entry: './src/index.ts',
+    entry: './src/js/index.ts',
     output: {
         path: DIST_PATH,
         filename: '[name].min.js',
